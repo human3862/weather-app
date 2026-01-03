@@ -1,73 +1,30 @@
-# React + TypeScript + Vite
+# Weather App 🌤️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современное веб-приложение для мониторинга погоды в реальном времени. Позволяет пользователям мгновенно получать данные о погодных условиях в любой точке мира.
 
-Currently, two official plugins are available:
+## 🚀 Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Проект построен на актуальном стеке разработки:
 
-## React Compiler
+- **React** (Hooks, Function Components)
+- **Vite** — для молниеносной сборки и горячей перезагрузки.
+- **TypeScript** — для строгой типизации и минимизации ошибок.
+- **Tailwind CSS** — для быстрой верстки и адаптивного дизайна.
+- **Fetch/Axios** — для работы с внешними API.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Основной функционал
 
-## Expanding the ESLint configuration
+- 🔍 **Поиск по городам:** Получение актуальной информации о погоде по названию населенного пункта.
+- 🌡️ **Подробные данные:** Температура, влажность, скорость ветра, атмосферное давление и описание условий.
+- 📱 **Адаптивность:** Интерфейс корректно отображается на смартфонах, планшетах и ПК.
+- ⚡ **Производительность:** Благодаря Vite приложение загружается практически мгновенно.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📂 Структура проекта
+src/
+├── assets/         # Изображения и статические ресурсы
+├── components/     # UI компоненты (WeatherCard, Search, и т.д.)
+├── hooks/          # Кастомные хуки для логики
+├── types/          # TypeScript интерфейсы и типы данных
+├── App.tsx         # Главный компонент
+└── main.tsx        # Точка входа
