@@ -3,6 +3,7 @@ import { HourlyForecast } from "../components/Weather/HourlyForecast";
 import { DailyForecast } from "../components/Weather/DailyForecast";
 import { MetricsCards } from "./Weather/MetricsCards";
 import type { IForecastDay, IWeather } from "../types/weather";
+import { useMemo } from "react";
 
 interface MainProps {
   weather?: IWeather;
@@ -11,17 +12,18 @@ interface MainProps {
   setSelectedDay: (index: number) => void;
 }
 
-export const Main = ({
-  weather,
-  activeDay,
-  selectedDay,
-  setSelectedDay,
-}: MainProps) => {
-  const filteredHourlyData =
-    weather?.hourly.filter((hour) => {
-      const hourDate = hour.time.split(" ")[0] || hour.time.split("T")[0];
-      return hourDate === activeDay?.date;
-    }) || [];
+export const Main = ({ weather, selectedDay, setSelectedDay }: MainProps) => {
+  const activeDay = weather?.forecast[selectedDay];
+  const filteredHourlyData = useMemo(() => {
+    const hourly = weather?.hourly;
+    const targetDate = activeDay?.date?.slice(0, 10);
+
+    if (!hourly || !targetDate) return [];
+
+    return hourly.filter((hour) => {
+      return hour.time?.slice(0, 10) === targetDate;
+    });
+  }, [weather?.hourly, activeDay?.date]);
   return (
     <>
       {weather && activeDay && (
@@ -29,7 +31,9 @@ export const Main = ({
           <div className="lg:col-span-2 space-y-8">
             <CurrentWeather weather={weather} activeDay={activeDay} />
             <MetricsCards activeDay={activeDay} />
-            <HourlyForecast hourly={filteredHourlyData} />
+            {filteredHourlyData.length > 0 ? (
+              <HourlyForecast hourly={filteredHourlyData} />
+            ) : null}
           </div>
 
           <DailyForecast

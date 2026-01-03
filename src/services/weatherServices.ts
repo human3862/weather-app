@@ -30,7 +30,7 @@ export const fetchWeather = async (city: string): Promise<IWeather> => {
       precip: data.daily.precipitation_sum[i],
     })),
     hourly:
-      data.hourly?.time.slice(0, 24).map((t: string, i: number) => ({
+      data.hourly?.time.map((t: string, i: number) => ({
         time: t,
         temp: data.hourly.temperature_2m[i],
       })) || [],
