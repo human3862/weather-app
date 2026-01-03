@@ -17,6 +17,11 @@ export const Main = ({
   selectedDay,
   setSelectedDay,
 }: MainProps) => {
+  const filteredHourlyData =
+    weather?.hourly.filter((hour) => {
+      const hourDate = hour.time.split(" ")[0] || hour.time.split("T")[0];
+      return hourDate === activeDay?.date;
+    }) || [];
   return (
     <>
       {weather && activeDay && (
@@ -24,7 +29,7 @@ export const Main = ({
           <div className="lg:col-span-2 space-y-8">
             <CurrentWeather weather={weather} activeDay={activeDay} />
             <MetricsCards activeDay={activeDay} />
-            <HourlyForecast hourly={weather.hourly} />
+            <HourlyForecast hourly={filteredHourlyData} />
           </div>
 
           <DailyForecast
