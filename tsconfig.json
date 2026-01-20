@@ -1,5 +1,13 @@
 {
-  "files": [],
+  "compilerOptions": {
+    "module": "ESNext", // Добавь или измени на это
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "target": "ESNext", // Желательно тоже поставить современный
+    "allowImportingTsExtensions": true, // Полезно для Vite
+    "isolatedModules": true,
+    "noEmit": true
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
